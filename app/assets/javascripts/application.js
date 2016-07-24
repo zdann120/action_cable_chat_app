@@ -14,3 +14,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  submitNewMessage();
+});
+
+function submitNewMessage(){
+  $('textarea#message_content').keydown(function(event) {
+    if (event.keyCode == 13  && !event.shiftKey) {
+        $('[data-send="message"]').click();
+        $('[data-textarea="message"]').val(" ")
+        return false;
+     }
+  });
+}

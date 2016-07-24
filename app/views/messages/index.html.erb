@@ -1,12 +1,23 @@
 <h1>Messages</h1>
 
 <% if @messages && @messages.any? %>
+  <div id="messages">
   <% @messages.each do |message| %>
   <%= message.user.username %>: <%= message.content %>
   <% end %>
+  </div>
 <% end %>
-
-<%= form_for(@message) do |f| %>
+<!--
+<%= form_for(@message, remote: true) do |f| %>
   <%= f.text_area :content %>
-  <%= f.submit %>
+  <%= f.submit data: { send: "message" } %>
+<% end %>
+ -->
+<%= form_for @message, remote: true do |f| %>
+  <%= f.label :your_message %>:
+  <%= f.text_area :content, class: "form-control",
+                            data: { textarea: "message" } %>
+
+  <%= f.submit "send", class: "btn btn-primary",
+                       data: { send: "message" } %>
 <% end %>
