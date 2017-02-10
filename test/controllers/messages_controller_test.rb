@@ -26,6 +26,6 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
   test "should create valid message" do
     login_as @user
     post messages_url, params: { message: { content: "Lorem" } }
-    assert_response :redirect
+    assert_response :success
   end
 end

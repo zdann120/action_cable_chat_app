@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'room_channel',
           content: message.content,
           username: message.user.username
+      head :ok
     end
   end
 
